@@ -13,13 +13,14 @@ public class UpdateSystem {
     LightService lightService;
     FanService fanService;
 
-    UpdateSystem() {
-        airConditionerService = new AirConditionerService();
-        lightService = new LightService();
-        fanService = new FanService();
+    UpdateSystem(AirConditionerService airConditionerService, LightService lightService, FanService fanService) {
+        this.airConditionerService = airConditionerService;
+        this.lightService = lightService;
+        this.fanService = fanService;
     }
 
-    @Scheduled(cron = "0 0 1 1 1 *")
+    // Jan 1, 1:00am local time, yearly
+    @Scheduled(cron = "0 0 1 1 1 ?")
     public void runYearlyUpdate() {
         airConditionerService.powerOff();
         lightService.powerOff();

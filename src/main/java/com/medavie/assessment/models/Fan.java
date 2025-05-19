@@ -1,19 +1,15 @@
 package com.medavie.assessment.models;
 
+import lombok.Getter;
+import org.springframework.stereotype.Component;
+
+@Component
+@Getter
 public class Fan extends HomeAppliance {
 
-    private static Fan INSTANCE;
-
-    private Fan() {
+    public Fan() {
         super();
         this.speed = 0;
-    }
-
-    public static Fan getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Fan();
-        }
-        return INSTANCE;
     }
 
     private int speed;
@@ -25,10 +21,6 @@ public class Fan extends HomeAppliance {
         } else if (this.isPoweredOff()) {
             this.powerOn();
         }
-    }
-
-    public int getSpeed() {
-        return this.speed;
     }
 
 }

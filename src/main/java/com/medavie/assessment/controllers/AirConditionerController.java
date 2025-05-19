@@ -1,33 +1,33 @@
 package com.medavie.assessment.controllers;
 
+import com.medavie.assessment.models.requests.AirConditionerRequest;
 import com.medavie.assessment.models.AirConditioner;
 import com.medavie.assessment.models.HomeAppliance;
 import com.medavie.assessment.services.AirConditionerService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/ac")
 public class AirConditionerController {
 
     private final AirConditionerService airConditionerService;
 
-    AirConditionerController() {
-        this.airConditionerService = new AirConditionerService();
+    AirConditionerController(AirConditionerService airConditionerService) {
+        this.airConditionerService = airConditionerService;
     }
 
-    @PutMapping("/ac")
-    public AirConditioner putAirConditionerSettings(@RequestBody AirConditioner ac) {
-        return this.airConditionerService.updateSettings(ac);
+    @PutMapping
+    public AirConditioner updateAirConditionerSettings(@Valid @RequestBody AirConditionerRequest req) {
+        return this.airConditionerService.updateSettings(req);
     }
 
-    @GetMapping("/ac")
+    @GetMapping
     public AirConditioner getAirConditionerSettings() {
         return this.airConditionerService.getSettings();
     }
 
-    @GetMapping("/ac/status")
+    @GetMapping("/status")
     public HomeAppliance.Power getPowerStatus() {
         return this.airConditionerService.getSettings().getPower();
     }

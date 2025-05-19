@@ -1,37 +1,30 @@
 package com.medavie.assessment.services;
 
+import com.medavie.assessment.models.requests.AirConditionerRequest;
 import com.medavie.assessment.models.AirConditioner;
+import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-
+@Service
 public class AirConditionerService {
 
     private final AirConditioner airConditioner;
 
-    public AirConditionerService() {
-        this.airConditioner = AirConditioner.getInstance();
+    public AirConditionerService(AirConditioner airConditioner) {
+        this.airConditioner = airConditioner;
     }
 
-    public AirConditioner updateSettings(AirConditioner ac) {
-        this.updateTemperature(ac.getTemperature());
-        this.updateMode(ac.getMode());
+    public AirConditioner updateSettings(AirConditionerRequest req) {
+        if (req.getTemperature() != null) this.updateTemperature(req.getTemperature());
+        if (req.getMode() != null) this.updateMode(req.getMode());
         return this.airConditioner;
     }
 
     private void updateTemperature(int temperature) {
-        if (temperature < 16 || temperature > 30) {
-            System.out.println("Invalid or missing temperature. Value must be between 16 and 30 inclusive.");
-        } else {
-            airConditioner.setTemperature(temperature);
-        }
+        airConditioner.setTemperature(temperature);
     }
 
     private void updateMode(AirConditioner.Mode mode) {
-        if (mode == null) {
-            System.out.println("Invalid or missing mode. Must be one of: " + Arrays.toString(AirConditioner.Mode.values()));
-        } else {
-            airConditioner.setMode(mode);
-        }
+        airConditioner.setMode(mode);
     }
 
     public AirConditioner getSettings() {

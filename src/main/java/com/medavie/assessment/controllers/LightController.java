@@ -1,33 +1,32 @@
 package com.medavie.assessment.controllers;
 
+import com.medavie.assessment.models.requests.LightRequest;
 import com.medavie.assessment.models.HomeAppliance;
 import com.medavie.assessment.models.Light;
 import com.medavie.assessment.services.LightService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/light")
 public class LightController {
 
     private final LightService lightService;
 
-    LightController() {
-        this.lightService = new LightService();
+    LightController(LightService lightService) {
+        this.lightService = lightService;
     }
 
-    @PutMapping("/light")
-    Light updateLightSettings(@RequestBody Light light) {
-        return this.lightService.updateSettings(light);
+    @PutMapping
+    Light updateLightSettings(@RequestBody LightRequest req) {
+        return this.lightService.updateSettings(req);
     }
 
-    @GetMapping("/light")
+    @GetMapping
     public Light getLightSettings() {
         return this.lightService.getSettings();
     }
 
-    @GetMapping("/light/status")
+    @GetMapping("/status")
     public HomeAppliance.Power getPowerStatus() {
         return this.lightService.getSettings().getPower();
     }

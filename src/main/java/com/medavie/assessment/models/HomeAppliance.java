@@ -1,8 +1,11 @@
 package com.medavie.assessment.models;
 
-public class HomeAppliance {
+import lombok.Data;
 
-    protected HomeAppliance() {
+@Data
+public abstract class HomeAppliance {
+
+    HomeAppliance() {
         this.power = Power.OFF;
     }
 
@@ -13,23 +16,15 @@ public class HomeAppliance {
 
     private Power power;
 
-    public void setPower(Power power) {
-        this.power = power;
-    }
-
-    public Power getPower() {
-        return this.power;
-    }
-
-    protected void powerOn() {
+    void powerOn() {
         this.power = Power.ON;
     }
 
-    protected void powerOff() {
+    void powerOff() {
         this.power = Power.OFF;
     }
 
-    protected boolean isPoweredOff() {
+    boolean isPoweredOff() {
         return this.power == Power.OFF;
     }
 

@@ -1,20 +1,17 @@
 package com.medavie.assessment.models;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
+
+@Getter
+@Component
 public class AirConditioner extends HomeAppliance {
 
-    private static AirConditioner INSTANCE;
-
-    private AirConditioner() {
+    public AirConditioner() {
         super();
         this.mode = Mode.OFF;
         this.temperature = 21;
-    }
-
-    public static AirConditioner getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new AirConditioner();
-        }
-        return INSTANCE;
     }
 
     public enum Mode {
@@ -27,6 +24,8 @@ public class AirConditioner extends HomeAppliance {
     }
 
     private Mode mode;
+
+    @Setter
     private int temperature;
 
     public void setMode(Mode mode) {
@@ -36,18 +35,6 @@ public class AirConditioner extends HomeAppliance {
         } else {
             this.powerOn();
         }
-    }
-
-    public Mode getMode() {
-        return this.mode;
-    }
-
-    public void setTemperature(int temperature) {
-        this.temperature = temperature;
-    }
-
-    public int getTemperature() {
-        return this.temperature;
     }
 
 }

@@ -1,21 +1,20 @@
 package com.medavie.assessment.services;
 
+import com.medavie.assessment.models.requests.FanRequest;
 import com.medavie.assessment.models.Fan;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FanService {
 
     private final Fan fan;
 
-    public FanService() {
-        this.fan = Fan.getInstance();
+    public FanService(Fan fan) {
+        this.fan = fan;
     }
 
-    public Fan updateSettings(Fan fan) {
-        if (fan.getSpeed() < 0 || fan.getSpeed() > 2) {
-            System.out.println("Invalid or missing fan speed: must be a value between 0 and 2 inclusive.");
-        } else {
-            this.fan.setSpeed(fan.getSpeed());
-        }
+    public Fan updateSettings(FanRequest req) {
+        this.fan.setSpeed(req.getSpeed());
         return this.fan;
     }
 

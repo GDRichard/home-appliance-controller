@@ -1,33 +1,33 @@
 package com.medavie.assessment.controllers;
 
+import com.medavie.assessment.models.requests.FanRequest;
 import com.medavie.assessment.models.Fan;
 import com.medavie.assessment.models.HomeAppliance;
 import com.medavie.assessment.services.FanService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/fan")
 public class FanController {
 
     private final FanService fanService;
 
-    FanController() {
-        this.fanService = new FanService();
+    FanController(FanService fanService) {
+        this.fanService = fanService;
     }
 
-    @PutMapping("/fan")
-    Fan putFan(@RequestBody Fan fan) {
-        return this.fanService.updateSettings(fan);
+    @PutMapping
+    Fan putFan(@Valid @RequestBody FanRequest req) {
+        return this.fanService.updateSettings(req);
     }
 
-    @GetMapping("/fan")
+    @GetMapping
     Fan getFan() {
         return this.fanService.getSettings();
     }
 
-    @GetMapping("/fan/status")
+    @GetMapping("/status")
     HomeAppliance.Power getPowerStatus() {
         return this.fanService.getSettings().getPower();
     }

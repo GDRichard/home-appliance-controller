@@ -1,19 +1,15 @@
 package com.medavie.assessment.models;
 
+import lombok.Getter;
+import org.springframework.stereotype.Component;
+
+@Component
+@Getter
 public class Light extends HomeAppliance {
 
-    private static Light INSTANCE;
-
-    private Light() {
+    public Light() {
         super();
         this.switchPosition = SwitchPosition.OFF;
-    }
-
-    public static Light getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Light();
-        }
-        return INSTANCE;
     }
 
     public enum SwitchPosition {
@@ -30,10 +26,6 @@ public class Light extends HomeAppliance {
         } else {
             this.powerOff();
         }
-    }
-
-    public SwitchPosition getSwitchPosition() {
-        return this.switchPosition;
     }
 
 }
