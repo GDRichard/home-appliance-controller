@@ -22,10 +22,15 @@ public class Light extends HomeAppliance {
     public void setLightSwitch(SwitchPosition switchPosition) {
         this.switchPosition = switchPosition;
         if (switchPosition == SwitchPosition.ON) {
-            this.powerOn();
+            this.setPower(Power.ON);
         } else {
-            this.powerOff();
+            this.setPower(Power.OFF);
         }
+    }
+
+    public void powerOff() {
+        this.switchPosition = SwitchPosition.OFF;
+        this.setPower(Power.OFF);
     }
 
 }

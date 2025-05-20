@@ -32,6 +32,6 @@ public class AirConditionerService {
     }
 
     public void powerOff() {
-        this.airConditioner.setMode(AirConditioner.Mode.OFF);
+        this.airConditioner.powerOff();
     }
 }

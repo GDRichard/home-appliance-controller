@@ -23,7 +23,7 @@ public class LightService {
     }
 
     public void powerOff() {
-        this.light.setLightSwitch(Light.SwitchPosition.OFF);
+        this.light.powerOff();
     }
 
 }

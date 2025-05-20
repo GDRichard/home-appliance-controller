@@ -17,10 +17,15 @@ public class Fan extends HomeAppliance {
     public void setSpeed(int speed) {
         this.speed = speed;
         if (speed == 0) {
-            this.powerOff();
+            this.setPower(Power.OFF);
         } else if (this.isPoweredOff()) {
-            this.powerOn();
+            this.setPower(Power.ON);
         }
+    }
+
+    public void powerOff() {
+        this.speed = 0;
+        this.setPower(Power.OFF);
     }
 
 }

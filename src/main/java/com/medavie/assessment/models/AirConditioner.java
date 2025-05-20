@@ -31,10 +31,15 @@ public class AirConditioner extends HomeAppliance {
     public void setMode(Mode mode) {
         this.mode = mode;
         if (mode == Mode.OFF) {
-            this.powerOff();
+            this.setPower(Power.OFF);
         } else {
-            this.powerOn();
+            this.setPower(Power.ON);
         }
+    }
+
+    public void powerOff() {
+        this.mode = Mode.OFF;
+        this.setPower(Power.OFF);
     }
 
 }

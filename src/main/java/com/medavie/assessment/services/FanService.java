@@ -23,7 +23,7 @@ public class FanService {
     }
 
     public void powerOff() {
-        this.fan.setSpeed(0);
+        this.fan.powerOff();
     }
 
 }

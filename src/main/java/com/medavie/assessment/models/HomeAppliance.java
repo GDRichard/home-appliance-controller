@@ -16,16 +16,10 @@ public abstract class HomeAppliance {
 
     private Power power;
 
-    void powerOn() {
-        this.power = Power.ON;
-    }
-
-    void powerOff() {
-        this.power = Power.OFF;
-    }
-
     boolean isPoweredOff() {
         return this.power == Power.OFF;
     }
+
+    abstract void powerOff();
 
 }
