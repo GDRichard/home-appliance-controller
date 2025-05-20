@@ -14,17 +14,9 @@ public class AirConditionerService {
     }
 
     public AirConditioner updateSettings(AirConditionerRequest req) {
-        if (req.getTemperature() != null) this.updateTemperature(req.getTemperature());
-        if (req.getMode() != null) this.updateMode(req.getMode());
+        if (req.getTemperature() != null) this.airConditioner.setTemperature(req.getTemperature());
+        if (req.getMode() != null) this.airConditioner.setMode(req.getMode());
         return this.airConditioner;
-    }
-
-    private void updateTemperature(int temperature) {
-        airConditioner.setTemperature(temperature);
-    }
-
-    private void updateMode(AirConditioner.Mode mode) {
-        airConditioner.setMode(mode);
     }
 
     public AirConditioner getSettings() {

@@ -4,6 +4,7 @@ import com.medavie.assessment.models.requests.LightRequest;
 import com.medavie.assessment.models.HomeAppliance;
 import com.medavie.assessment.models.Light;
 import com.medavie.assessment.services.LightService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +18,7 @@ public class LightController {
     }
 
     @PutMapping
-    Light updateLightSettings(@RequestBody LightRequest req) {
+    Light updateLightSettings(@Valid @RequestBody LightRequest req) {
         return this.lightService.updateSettings(req);
     }
 
