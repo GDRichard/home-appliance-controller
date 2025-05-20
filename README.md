@@ -1,7 +1,7 @@
 # Home Appliance Controller
 
 Basic Spring Boot application that uses a REST API to interact with a home appliance controller.
-Controls a light, fan, and air conditioner. Each appliance has the field `power` that represents
+Controls a light, fan, and air conditioner. Each appliance has a `power` field that represents
 whether the appliance is powered ON or OFF.
 
 ## Light
